@@ -1,6 +1,5 @@
 package de.tobias.kontrollstrukturen;
 
-import java.util.Map;
 import java.util.Scanner;
 
 public class UebungenKontrollstrukturen {
@@ -40,11 +39,32 @@ public class UebungenKontrollstrukturen {
             default -> 1;
         };
 
+        /*switch (getraenk) {
+            case 1:
+                alkoholVolumenAnteil = 0.05;
+                break;
+            case 2:
+                alkoholVolumenAnteil = 0.08;
+                break;
+            case 3:
+                alkoholVolumenAnteil = 0.025;
+                break;
+            case 4:
+                alkoholVolumenAnteil = 0.38;
+                break;
+            case 5:
+                alkoholVolumenAnteil = 0.42;
+                break;
+            default:
+                alkoholVolumenAnteil = 1;
+                break;
+        }*/
+
         double masse = 10 * getrunkeneFluessigkeit * alkoholVolumenAnteil * 0.8;
 
         double promille = masse / (koerpermasse * (geschlecht == 1 ? 0.6 : 0.7));
         promille = promille * 100;
-        promille = Math.round(promille * 100.0) / 100.0;
+        promille = (double) Math.round(promille * 100.0) / 100.0;
         System.out.printf("Ihr Promillewert beträgt: %f", promille);
         scanner.close();
     }
@@ -64,9 +84,9 @@ public class UebungenKontrollstrukturen {
         System.out.println("Körpergrö0e in cm:");
         int size = scanner.nextInt();
 
-        if(alter <= 17 && size > 120) {
+        if (alter <= 17 && size > 120) {
             System.out.println("Es können keine Angaben gemacht werden :(");
-            System.exit(0);
+            System.exit(1);
         }
 
         double toleranzgrenzePlus = geschlecht == 1 ? 0.04 : 0.05;
@@ -79,9 +99,9 @@ public class UebungenKontrollstrukturen {
         double gewichtMin = gewicht - Math.abs(toleranzMinus);
         double gewichtMax = gewicht + toleranzMax;
 
-        if(gewicht > gewichtMax) {
+        if (gewicht > gewichtMax) {
             System.out.println("Sie haben übergewicht");
-        } else if(gewicht < gewichtMin) {
+        } else if (gewicht < gewichtMin) {
             System.out.println("Sie sind untergewichtig");
         } else {
             System.out.println("Sie haben normal gewicht");
@@ -96,9 +116,9 @@ public class UebungenKontrollstrukturen {
         int addierteZahl = 0;
         int anzahl = 0;
 
-        while(scanner.hasNextInt()) {
+        while (scanner.hasNextInt()) {
             int eingegebenZahl = scanner.nextInt();
-            if(eingegebenZahl == 0)
+            if (eingegebenZahl == 0)
                 break;
             addierteZahl += eingegebenZahl;
             anzahl++;
@@ -128,13 +148,26 @@ public class UebungenKontrollstrukturen {
             default -> -1;
         } * menge;
 
+        /*
+        switch (getraenk) {
+            case 1:
+                getraenkPreis = 0.5;
+                break;
+            case 2:
+            case 3:
+                getraenkPreis = 1.0;
+                break;
+            default:
+                getraenkPreis = -1;
+                break;
+        }
+        getraenkPreis *= menge;*/
+
         System.out.println("------------------Bezahlvorgang------------------");
         System.out.printf("Es fehlen noch: %g €%n", getraenkPreis);
         System.out.println("Bitte geben Sie ein Geldstück ein: ");
 
-
-
-        while(getraenkPreis > 0) {
+        while (getraenkPreis > 0) {
             int geldstueck = scanner.nextInt();
             switch (geldstueck) {
                 case 1 -> getraenkPreis -= 1;
@@ -144,13 +177,13 @@ public class UebungenKontrollstrukturen {
                 case 10 -> getraenkPreis -= 0.1;
                 case 5 -> getraenkPreis -= 0.05;
             }
-            if(getraenkPreis > 0) {
+            if (getraenkPreis > 0) {
                 System.out.printf("Es fehlen noch %g €%n", getraenkPreis);
             }
         }
 
         double wechselGeld = 0;
-        if(getraenkPreis < 0) {
+        if (getraenkPreis < 0) {
             wechselGeld = Math.abs(getraenkPreis);
         }
         System.out.printf("Bitte entnehmen Sie ihr Wechhselgeld in Höhe von %g €%n", wechselGeld);
