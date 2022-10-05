@@ -1,5 +1,8 @@
 package de.tobias.oop;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class Auto {
 
     public int geschwindigkeit;
@@ -7,6 +10,11 @@ public class Auto {
     public int anzahlInsassen;
     public int anzahlTueren;
     public String name;
+
+    public boolean hatTuev;
+    public LocalDateTime datumPruefung;
+
+    public boolean hatAnhaengerKupplung;
 
     public void init(int geschwindigkeit, String farbe, int anzahlInsassen) {
         this.geschwindigkeit = geschwindigkeit;
@@ -46,6 +54,15 @@ public class Auto {
 
     public void lackieren(String neueFarbe) {
         this.farbe = neueFarbe;
+    }
+
+    public void pruefeAuto(LocalDateTime datum, boolean erfolg) {
+        this.hatTuev = erfolg;
+        this.datumPruefung = datum;
+    }
+
+    public boolean hatAngengerKupplung() {
+        return this.hatAnhaengerKupplung;
     }
 
 }
